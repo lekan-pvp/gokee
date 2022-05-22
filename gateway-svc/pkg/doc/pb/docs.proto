@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package doc;
+
+option go_package="./pkg/doc/pb";
+
+service DocService {
+  rpc Add(AddRequest) returns (AddReply) {}
+  rpc Update(UpdateRequest) returns (UpdateReply) {}
+  rpc Get(GetRequest) returns (GetReply) {}
+  rpc Remove(RemoveRequest) returns (RemoveReply) {}
+}
+
+
+
+// Add
+
+message AddRequest {
+  string Title = 1;
+  string Content = 2;
+  string userId = 3;
+}
+
+message AddReply {
+  int64 status = 1;
+  string error = 2;
+  int64 id = 3;
+}
+
+// Update
+
+message UpdateRequest {
+  int64 id = 1;
+  string Title = 2;
+  string Content = 3;
+}
+
+message UpdateReply {
+  int64 status = 1;
+  string error = 2;
+}
+
+// Get
+
+message GetRequest {
+  int64 id = 1;
+}
+
+message GetReply {
+  int64 status = 1;
+  string Title = 2;
+  string Content = 3;
+  string error = 4;
+}
+
+// Remove
+
+message RemoveRequest {
+  int64 id = 1;
+}
+
+message RemoveReply {
+  int64 status = 1;
+  string error = 2;
+}
